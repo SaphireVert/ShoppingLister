@@ -25,6 +25,14 @@ namespace angular.Controllers
             return _context.Note.FirstOrDefault(c => c.id == id);
         }
 
+
+        [HttpGet]
+        [Route("getAll")]
+
+        public IEnumerable<Note> GetAll(int id){
+            return _context.Note.Where(c => 1 == 1);
+        }
+
         [HttpPost]
         public string Post(string title, string content){
             _context.Add(new Note { Title = title, Content = content });

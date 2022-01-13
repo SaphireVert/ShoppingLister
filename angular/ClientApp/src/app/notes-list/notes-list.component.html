@@ -1,1 +1,27 @@
 <p>notes-list works!</p>
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!notes"><em>Loading...</em></p>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="notes">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let note of notes">
+      <td>{{ note.id }}</td>
+      <td>{{ note.title }}</td>
+      <td>{{ note.content }}</td>
+      <td><button class="btn btn-primary" (click)="edit()">Edit</button></td>
+      <td><button class="btn btn-primary" (click)="delete()">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
