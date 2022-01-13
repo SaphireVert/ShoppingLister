@@ -17,52 +17,37 @@ namespace angular.Controllers
         {
             _context = context;
         }
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private readonly ILogger<NotesController> _logger;
 
-        // public NotesController(ILogger<NotesController> logger)
-        // {
-        //     _logger = logger;
-        // }
-
         [HttpGet]
-        public string Get(int id, string toto){
-
-            
-            // _context.Add(new Note { Title = "tototutu", Content = "http://blogs.msdn.com/adonet" });
-            // _context.SaveChanges();
-            return "toto" + id + toto;
+        public Note Get(int id){
+            return _context.Note.FirstOrDefault(c => c.id == id);
         }
 
         [HttpPost]
-        public string Post(){
-            _context.Add(new Note { Title = "tototutu", Content = "http://blogs.msdn.com/adonet" });
+        public string Post(string title, string content){
+            _context.Add(new Note { Title = title, Content = content });
             _context.SaveChanges();
-            return "toto";
+            return "Succeed";
         }
 
         [HttpPatch]
-        public string Patch()
+        public string Patch(int id, string title, string content)
         {
-
-
-            _context.Add(new Note { Title = "tototutu", Content = "http://blogs.msdn.com/adonet" });
+            Note note = new Note() { id = id, Title = title, Content = content };
+            _context.Update(note);
             _context.SaveChanges();
-            return "toto";
+            return "Succeed";
         }
 
         [HttpDelete]
-        public string Delete()
+        public string Delete(int id)
         {
-
-
-            _context.Add(new Note { Title = "tototutu", Content = "http://blogs.msdn.com/adonet" });
+            Note note = new Note() { id = id};
+            _context.Remove(note);
             _context.SaveChanges();
-            return "toto";
+            return "Succeed";
         }
     }
 }
