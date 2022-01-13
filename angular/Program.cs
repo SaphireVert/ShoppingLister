@@ -22,5 +22,6 @@ namespace angular
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        
     }
 }
