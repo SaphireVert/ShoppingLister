@@ -8,8 +8,9 @@ namespace angular.Models
 }
     public class AppDataContext : DbContext
     {
-        public DbSet<Note> Note { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Item> Item { get; set; }
+        public DbSet<ItemList> ItemList { get; set; }
 
 
         public AppDataContext(DbContextOptions<AppDataContext> options)
