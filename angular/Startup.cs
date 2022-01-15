@@ -26,6 +26,7 @@ namespace angular
             services.AddDbContext<AppDataContext>(x => x.UseSqlite(@"Data Source=app.db;"));
 
             services.AddControllersWithViews();
+            services.AddSwaggerGen();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -39,6 +40,8 @@ namespace angular
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
