@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
+import { ItemsListsComponent } from './items-lists/items-lists.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NotesListComponent } from './notes-list/notes-list.component';
     CounterComponent,
     FetchDataComponent,
     NotesListComponent,
+    ItemsListsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -29,6 +31,7 @@ import { NotesListComponent } from './notes-list/notes-list.component';
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
       { path: "notes-list", component: NotesListComponent },
+      { path: "items-lists", component: ItemsListsComponent },
     ]),
   ],
   providers: [],

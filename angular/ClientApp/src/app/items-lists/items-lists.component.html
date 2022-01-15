@@ -1,0 +1,27 @@
+<p>item-list workssss!</p>
+<h1 id="tableLabel">Weather forecasts</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="items">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>name</th>
+      <th>quantity</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td><button class="btn btn-primary" (click)="edit()">Edit</button></td>
+      <td><button class="btn btn-primary" (click)="delete()">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

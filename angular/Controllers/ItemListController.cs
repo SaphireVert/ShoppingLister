@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace angular.Controllers
 {
@@ -42,6 +44,17 @@ namespace angular.Controllers
             _context.SaveChanges();
             return itemList;
         }
+        // [HttpPost]
+        // [Route("addItemToList")]
+        // public ItemList Post(Item item)
+        // {
+        //     // Console.WriteLine("itemList.Name-----");
+        //     // Console.WriteLine(itemList.Name);
+        //     // _context.ItemList.FromSqlRaw();
+        //     // _context.SaveChanges();
+        //     // return itemList;
+        // }
+
 
         [HttpPatch]
         public string Patch(int id, string name)
