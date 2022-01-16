@@ -5,30 +5,37 @@
 
 <p *ngIf="!items"><em>Loading...</em></p>
 
+<form action=""></form> 
 <button class="btn btn-primary" (click)="add()" *ngIf="items">+</button>
+<!-- <input type="text" id="itemName">
+<input type="text" id="itemBrand">
+<form (submit)="onSubmit()">
+   <input [(ngModel)]="playerName">
+</form> -->
+<form (ngSubmit)="addItem($event)">
+  <label for="itemName">Name :</label>
+  <input name="itemName" >
+  <br>
+  <label for="itemName">Brand :</label>
+   <input name="itemBrand" >
+   <input type="submit" value="Add item">
 
+</form>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="items">
   <thead>
     <tr>
       <th>ID</th>
       <th>name</th>
-      <th>quantity</th>
+      <th>brand</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
-  <!-- <tr>
-      <td>toto</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><button class="btn btn-primary" (click)="">Add</button></td>
-    </tr> -->
   <tbody>
     <tr *ngFor="let item of items">
       <td>{{ item.id }}</td>
       <td>{{ item.name }}</td>
-      <td>{{ item.quantity }}</td>
+      <td>{{ item.brand }}</td>
       <td><button class="btn btn-primary" (click)="edit(item.id)">Edit</button></td>
       <td><button class="btn btn-primary" (click)="delete(item.id)">Delete</button></td>
     </tr>
