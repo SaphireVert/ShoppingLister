@@ -72,6 +72,7 @@ namespace angular.Controllers
             Item item = new Item() { id = id};
             _context.Remove(item);
             _context.SaveChanges();
+            Console.WriteLine("Item deleted");
             return "Succeed";
         }
     }
