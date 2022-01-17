@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { ItemsService } from "../items.service";
+
 
 @Component({
   selector: "app-items-lists",
@@ -10,27 +12,20 @@ export class ItemsListsComponent implements OnInit {
   public items: Item[];
   public baseURL: string;
   public http: HttpClient;
+  public itemService: ItemsService;
+  public testValue: string = "Input click!";
 
-  constructor(http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
-    this.baseURL = baseUrl;
-    this.http = http;
-    http.get<Item[]>(baseUrl + "item/getAll").subscribe(
-      (result) => {
-        this.items = result;
-      },
-      (error) => console.error(error)
-    );
+  constructor(itemService: ItemsService) {
+    this.itemService = itemService;
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.itemService.getItems().then((item) => (this.items = item));
+  }
   public edit(id: number) {}
   public delete(id: number) {
-    var json: object = this.http
-      .delete("https://localhost:5001/item?id=" + id, { responseType: "text" })
-      .subscribe((data) => {
-        console.log(data);
-        window.location.reload();
-      });
+    this.itemService.deleteItem(id);
+    this.ngOnInit();
   }
   // addItem(event: any) {
   //   console.log("submitting...");
@@ -54,10 +49,14 @@ export class ItemsListsComponent implements OnInit {
       )
       .subscribe((data) => {
         console.log(data);
-        window.location.reload();
+        this.ngOnInit();
       });
   }
+  onButtonClick(output:string){
+    console.log(output)
+  }
 }
+
 interface Item {
   id: number;
   name: string;

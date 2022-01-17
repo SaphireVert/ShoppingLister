@@ -6,7 +6,7 @@
 <p *ngIf="!items"><em>Loading...</em></p>
 
 <form action=""></form> 
-<button class="btn btn-primary" (click)="add()" *ngIf="items">+</button>
+<!-- <button class="btn btn-primary" (click)="add()" *ngIf="items">+</button> -->
 <!-- <input type="text" id="itemName">
 <input type="text" id="itemBrand">
 <form (submit)="onSubmit()">
@@ -41,3 +41,5 @@
     </tr>
   </tbody>
 </table>
+
+<app-item [testInput]="testValue" (testOutput)="onButtonClick($event)"></app-item> 
