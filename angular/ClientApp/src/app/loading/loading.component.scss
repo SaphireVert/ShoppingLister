@@ -1,0 +1,72 @@
+*,
+html {
+  margin: 0;
+  padding: 0
+}
+
+div {
+  display: flex;
+  justify-content: space-around;
+}
+
+//variables
+$baseColor : #271a1f;
+$fontColor : #b178a7;
+$fontColors : #694362;
+$fontColorsx : #773a6c;
+
+body {
+  background: $baseColor;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  display: flex;
+  justify-content: space-around;
+}
+
+svg {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display: inline-block;
+}
+
+h1 {
+  text-align: center;
+  color: $fontColor;
+  margin: 0 0 100px;
+  font-size: 34px;
+  font-weight: 100;
+  text-transform: uppercase;
+  background-color: darken($baseColor, 5);
+  padding: 20px 0;
+
+  b {
+    font-weight: 700;
+  }
+}
+
+//follow me template
+.made-with-love {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 10px;
+  font-family: arial;
+  color: rgb(20, 13, 13);
+
+  i {
+    font-style: normal;
+    color: #271a1f;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+  }
+
+  a {
+    color: rgb(36, 27, 27);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -24,21 +24,24 @@ export class ItemsListsComponent implements OnInit {
   }
   public edit(id: number) {}
   public delete(id: number) {
-    this.itemService.deleteItem(id);
-    this.ngOnInit();
+    this.itemService.deleteItem(id).then(() => this.ngOnInit());
   }
   public addItem(event: any) {
     console.debug("adding...");
-    this.itemService.createItem({
-      name: event.target.itemName.value,
-      brand: event.target.itemBrand.value,
-    });
-    this.ngOnInit()
+    this.itemService
+      .createItem({
+        name: event.target.itemName.value,
+        brand: event.target.itemBrand.value,
+      })
+      .then(() => this.ngOnInit());
+    
     
   }
   onButtonClick(output:string){
     console.log(output)
   }
+
+  
 }
 
 interface Item {

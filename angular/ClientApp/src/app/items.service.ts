@@ -25,24 +25,33 @@ export class ItemsService {
   //       });
   //   });
   // }
-  createItem(item: any){
-    this.http
-      .post(
-        "https://localhost:5001/item",
-        item,
-        { responseType: "text" }
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+  createItem(item: any): Promise<boolean> {
+        return new Promise<boolean>((resolve) => {
+          this.http
+            .post("https://localhost:5001/item", item, {
+              responseType: "text",
+            })
+            .subscribe((data) => {
+              console.log(data);
+              resolve(true);
+            });
+        });
+
+
   }
-  deleteItem(id: number) {
-    var json: object = this.http
-      .delete("https://localhost:5001/item?id=" + id, { responseType: "text" })
-      .subscribe((data) => {
-        console.log(data);
-        // test.ngOnInit()
-      });
+  deleteItem(id: number): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      var json: object = this.http
+        .delete("https://localhost:5001/item?id=" + id, {
+          responseType: "text",
+        })
+        .subscribe((data) => {
+          console.log(data);
+          console.log("data");
+          resolve(true);
+          // test.ngOnInit()
+        });
+    });
   }
   getItems(): Promise<Item[]> {
     return new Promise<Item[]>((resolve) => {
