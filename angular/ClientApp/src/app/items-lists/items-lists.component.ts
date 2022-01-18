@@ -27,30 +27,14 @@ export class ItemsListsComponent implements OnInit {
     this.itemService.deleteItem(id);
     this.ngOnInit();
   }
-  // addItem(event: any) {
-  //   console.log("submitting...");
-  //   console.log(event.target);
-  //   console.log(event.target.itemName.value);
-  //   console.log(event.target.itemBrand.value);
-
-  //   return event.target.itemName.value;
-  // }
   public addItem(event: any) {
     console.debug("adding...");
-    console.debug();
-    this.http
-      .post(
-        "https://localhost:5001/item",
-        {
-          name: event.target.itemName.value,
-          brand: event.target.itemBrand.value,
-        },
-        { responseType: "text" }
-      )
-      .subscribe((data) => {
-        console.log(data);
-        this.ngOnInit();
-      });
+    this.itemService.createItem({
+      name: event.target.itemName.value,
+      brand: event.target.itemBrand.value,
+    });
+    this.ngOnInit()
+    
   }
   onButtonClick(output:string){
     console.log(output)

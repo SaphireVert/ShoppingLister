@@ -25,7 +25,17 @@ export class ItemsService {
   //       });
   //   });
   // }
-
+  createItem(item: any){
+    this.http
+      .post(
+        "https://localhost:5001/item",
+        item,
+        { responseType: "text" }
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
   deleteItem(id: number) {
     var json: object = this.http
       .delete("https://localhost:5001/item?id=" + id, { responseType: "text" })
