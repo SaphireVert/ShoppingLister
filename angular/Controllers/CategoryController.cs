@@ -12,30 +12,29 @@ namespace angular.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly AppDataContext _context;
+        private readonly ILogger<CategoryController> _logger;
+
 
         public CategoryController(AppDataContext context)
         {
             _context = context;
         }
 
-        private readonly ILogger<CategoryController> _logger;
-
         [HttpGet]
-        public Category Get(int id){
-            return _context.Category.FirstOrDefault(c => c.id == id);
+        public T_Category Get(int id){
+            return _context.T_Category.FirstOrDefault(c => c.id == id);
         }
-
 
         [HttpGet]
         [Route("getAll")]
-
-        public IEnumerable<Category> GetAll(int id){
-            return _context.Category.Where(c => 1 == 1);
-        }
+        public IEnumerable<T_Category> GetAll(){
+            return _context.T_Category;
+        }   
 
         [HttpPost]
-        public string Post(string name){
-            _context.Add(new Category { Name = name });
+        public string Post(T_Category category){
+            Console.WriteLine("Posting Category...");
+            _context.Add(category);
             _context.SaveChanges();
             return "Succeed";
         }
@@ -43,7 +42,7 @@ namespace angular.Controllers
         [HttpPatch]
         public string Patch(int id, string name)
         {
-            Category category = new Category() { id = id, Name = name };
+            T_Category category = new T_Category() { id = id, Name = name };
             _context.Update(category);
             _context.SaveChanges();
             return "Succeed";
@@ -52,7 +51,7 @@ namespace angular.Controllers
         [HttpDelete]
         public string Delete(int id)
         {
-            Category category = new Category() { id = id};
+            T_Category category = new T_Category() { id = id};
             _context.Remove(category);
             _context.SaveChanges();
             return "Succeed";
