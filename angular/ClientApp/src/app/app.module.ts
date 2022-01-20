@@ -11,6 +11,9 @@ import { ItemsListsComponent } from './items-lists/items-lists.component';
 import { ItemComponent } from './item/item.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { LoadingComponent } from './loading/loading.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { ListElementComponent } from './list-element/list-element.component';
+import { CrudTableComponent } from './crud-table/crud-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { LoadingComponent } from './loading/loading.component';
     SideMenuComponent,
     SideMenuComponent,
     LoadingComponent,
+    CategoryListComponent,
+    ListElementComponent,
+    CrudTableComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -30,6 +36,7 @@ import { LoadingComponent } from './loading/loading.component';
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "items-lists", component: ItemsListsComponent },
+      { path: "category-list", component: CategoryListComponent },
     ]),
   ],
   providers: [],
