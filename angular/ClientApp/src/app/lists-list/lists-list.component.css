@@ -1,0 +1,25 @@
+app-list-element:hover {
+    cursor: pointer;
+}
+
+h1{
+    /* background-color: brown; */
+}
+#parentDiv {
+    border-color: grey;
+    border-width: 1px;
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+div > * {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+

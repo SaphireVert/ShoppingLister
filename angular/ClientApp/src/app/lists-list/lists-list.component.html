@@ -1,8 +1,15 @@
 <h1>Available lists</h1>
 
-<div>
+<form (ngSubmit)="addList($event)">
+    <label for="listName">Name :</label>
+    <input name="listName">
+    <br>
+    <input type="submit" value="Add list">
+
+</form>
+<div id="parentDiv">
     <div *ngFor="let list of lists" >
         <!-- <p>{{ list }}</p> -->
-        <app-list-element [infosInput]="list" (eventOutput)="deleteElement($event)"></app-list-element>
+        <app-list-element [infosInput]="list" (deleteEventOutput)="deleteElement($event)" (goToEventOutput)="goToList($event)"></app-list-element>
     </div>
 </div>

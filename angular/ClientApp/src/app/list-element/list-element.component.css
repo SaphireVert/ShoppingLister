@@ -1,0 +1,12 @@
+div {
+  border-color: yellow;
+  /* margin-top: 10px;
+  margin-bottom: 10px;   */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-width: 10px;
+  border-style: solid;
+  height: 100%;
+  width: 90%;
+}
+

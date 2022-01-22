@@ -7,7 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ListElementComponent implements OnInit {
   @Input("infosInput") infosInput: List
-  @Output("eventOutput") eventOutput = new EventEmitter();
+  @Output("deleteEventOutput") deleteEventOutput = new EventEmitter();
+  @Output("goToEventOutput") goToEventOutput = new EventEmitter();
 
   // test = "test"
   // elementInfos = ["toto", "tutu", "titi"]
@@ -22,8 +23,13 @@ export class ListElementComponent implements OnInit {
   }
 
   delete() {
-    this.eventOutput.emit(this.infosInput.id);
+    this.deleteEventOutput.emit(this.infosInput.id);
   }
+
+  goTo(id:number) {
+    this.goToEventOutput.emit(this.infosInput.id);
+  }
+
 
 }
 
