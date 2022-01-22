@@ -1,21 +1,3 @@
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="categories">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let category of categories">
-            <td>{{ category.id }}</td>
-            <td>{{ category.name }}</td>
-            <td></td>
-            <td><button class="btn btn-primary" (click)="edit(category.id)">Edit</button></td>
-            <td><button class="btn btn-primary" (click)="delete(category.id)">Delete</button></td>
-        </tr>
-    </tbody>
-</table>
+{{ infosInput.id }}
+{{ infosInput.name }}
+<button (click)="delete()">x</button>
