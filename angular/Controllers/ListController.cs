@@ -23,44 +23,78 @@ namespace angular.Controllers
         private readonly ILogger<ListController> _logger;
 
         [HttpGet]
-        public T_List Get(int id){
-            return _context.T_List.FirstOrDefault(c => c.id == id);
+        public ActionResult<ListDTO> Get(int id){
+            try
+            {
+                return new ListDTO(_context.T_List.FirstOrDefault(c => c.id == id));
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
 
 
         [HttpGet]
         [Route("getAll")]
 
-        public IEnumerable<T_List> GetAll(){
-            Console.WriteLine("list.Name-----");
-            return _context.T_List.Where(c => 1 == 1);
+        public ActionResult<List<ListDTO>> GetAll(){
+            var tlist = _context.T_List.Where(c => c.isDeleted == false);
+            List<ListDTO> returnList = new List<ListDTO>();
+            foreach (var element in tlist)
+            {
+                returnList.Add(new ListDTO(element));
+            }
+            return returnList;
         }
 
         [HttpPost]
-        public T_List Post(T_List list){
-            Console.WriteLine("Posting list...");
-            Console.WriteLine(list.Name);
-            _context.Add(list);
-            _context.SaveChanges();
-            return list;
+        public StatusCodeResult Post([FromBody] ListDTO listDto){
+            try
+            {
+                T_List list = new T_List(listDto);
+                _context.Add(list);
+                _context.SaveChanges();
+                listDto.Id = list.id;
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(400);
+            }
         }
 
         [HttpPatch]
-        public string Patch(int id, string name)
+        public StatusCodeResult Patch([FromBody] ListDTO listDto)
         {
-            T_List list = new T_List() { id = id, Name = name };
-            _context.Update(list);
-            _context.SaveChanges();
-            return "Succeed";
+            try
+            {
+                T_List list = new T_List(listDto);
+                _context.Update(list);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
 
         [HttpDelete]
-        public string Delete(int id)
+        public StatusCodeResult Delete(int id)
         {
-            T_List list = new T_List() { id = id};
-            _context.Remove(list);
-            _context.SaveChanges();
-            return "Succeed";
+            try
+            {
+                T_List list = _context.T_List.Find(id);
+                list.isDeleted = true;
+                _context.Update(list);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
     }
 }

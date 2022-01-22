@@ -19,42 +19,71 @@ namespace angular.Controllers
         {
             _context = context;
         }
-
+        // [HttpGet("{id:int}")]
         [HttpGet]
-        public T_Category Get(int id){
-            return _context.T_Category.FirstOrDefault(c => c.id == id);
+        public ActionResult<CategoryDTO> Get(int id){
+            return new CategoryDTO(_context.T_Category.FirstOrDefault(c => c.isDeleted == false));
         }
 
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<T_Category> GetAll(){
-            return _context.T_Category;
+        public ActionResult<List<CategoryDTO>> GetAll(int id){
+            var tcategory = _context.T_Category.Where(c => c.isDeleted == false);
+            List<CategoryDTO> returnCategory = new List<CategoryDTO>();
+            foreach (var element in tcategory)
+            {
+                returnCategory.Add(new CategoryDTO(element));
+            }
+            return returnCategory;
         }   
 
         [HttpPost]
-        public string Post(T_Category category){
-            Console.WriteLine("Posting Category...");
-            _context.Add(category);
-            _context.SaveChanges();
-            return "Succeed";
+        public StatusCodeResult Post([FromBody] CategoryDTO categoryDto){
+
+            try
+            {
+                T_Category product = new T_Category(categoryDto);
+                _context.Add(product);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(400);
+            }
         }
 
         [HttpPatch]
-        public string Patch(int id, string name)
+        public StatusCodeResult Patch([FromBody] CategoryDTO categoryDto)
         {
-            T_Category category = new T_Category() { id = id, Name = name };
-            _context.Update(category);
-            _context.SaveChanges();
-            return "Succeed";
+            try
+            {
+                T_Category category = new T_Category(categoryDto);
+                _context.Update(category);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
 
         [HttpDelete]
-        public string Delete(int id)
+        public StatusCodeResult Delete(int id)
         {
-            T_Category category = new T_Category() { id = id};
-            _context.Remove(category);
-            _context.SaveChanges();
-            return "Succeed";
+            try
+            {
+                T_Category category = _context.T_Category.Find(id);
+                category.isDeleted = true;
+                _context.Update(category);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
     }
 }

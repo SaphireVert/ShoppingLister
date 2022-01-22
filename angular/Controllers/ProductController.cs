@@ -23,61 +23,88 @@ namespace angular.Controllers
         private readonly ILogger<ProductController> _logger;
 
         [HttpGet]
-        public T_Product Get(int id){
-            return _context.T_Product.FirstOrDefault(c => c.id == id);
+        public ActionResult<ProductDTO> Get(int id){
+            try
+            {
+                return new ProductDTO(_context.T_Product.FirstOrDefault(c => c.id == id));
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
 
 
         [HttpGet]
         [Route("getAll")]
 
-        public IEnumerable<T_Product> GetAll(int id){
-            return _context.T_Product.Where(c => 1 == 1);
+        public ActionResult<List<ProductDTO>> GetAll(int id){
+            var tproducts = _context.T_Product.Where(c => c.isDeleted == false);
+            List<ProductDTO> returnProduct = new List<ProductDTO>();
+            foreach (var element in tproducts)
+            {
+                returnProduct.Add(new ProductDTO(element));
+            }
+            return returnProduct;
         }
 
         [HttpPost]
-        public ProductDTO Post([FromBody] ProductDTO productDto){
-            T_Product product = new T_Product(productDto);
-            product.fk_Category = _context.T_Category.Find(productDto.CategoryId);
-            _context.Add(product);
-            _context.SaveChanges();
-            if (product.fk_Category == null)
-            {
-                productDto.CategoryId = null;
-            }
-                productDto.Id = product.id;
-            return productDto;
-        }
-
-        [HttpPatch]
-        public StatusCodeResult Patch([FromBody] ProductDTO productDto)
-        {
-            // T_Product product = new T_Product() { id = id, Name = name };
-            T_Product product = new T_Product(productDto);
-            product.fk_Category = _context.T_Category.Find(productDto.CategoryId);
-            _context.Update(product);
+        public StatusCodeResult Post([FromBody] ProductDTO productDto){
             try
             {
+                T_Product product = new T_Product(productDto);
+                product.fk_Category = _context.T_Category.Find(productDto.CategoryId);
+                _context.Add(product);
                 _context.SaveChanges();
-
+                if (product.fk_Category == null)
+                {
+                    productDto.CategoryId = null;
+                }
+                productDto.Id = product.id;
+                return StatusCode(200);
             }
             catch (System.Exception)
             {
                 return StatusCode(400);
             }
-            _context.SaveChanges();
-            ProductDTO productReturn = new ProductDTO(_context.T_Product.Find(productDto.Id));
-            productReturn.CategoryId = productDto.CategoryId;
-            return StatusCode(200);
+            
+        }
+
+        [HttpPatch]
+        public StatusCodeResult Patch([FromBody] ProductDTO productDto)
+        {
+            try
+            {
+                T_Product product = new T_Product(productDto);
+                product.fk_Category = _context.T_Category.Find(productDto.CategoryId);
+                _context.Update(product);
+                _context.SaveChanges();
+                ProductDTO productReturn = new ProductDTO(_context.T_Product.Find(productDto.Id));
+                productReturn.CategoryId = productDto.CategoryId;
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
+            
         }
 
         [HttpDelete]
-        public string Delete(int id)
+        public StatusCodeResult Delete(int id)
         {
-            // T_Product product = new T_Product() { id = id};
-            // _context.Remove(product);
-            // _context.SaveChanges();
-            return "Succeed";
+            try
+            {
+                T_Product product = _context.T_Product.Find(id);
+                product.isDeleted = true;
+                _context.Update(product);
+                _context.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
         }
     }
 }
