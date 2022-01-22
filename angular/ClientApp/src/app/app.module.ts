@@ -14,6 +14,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { ListElementComponent } from './list-element/list-element.component';
 import { CrudTableComponent } from './crud-table/crud-table.component';
+import { TableRawComponent } from './table-raw/table-raw.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CrudTableComponent } from './crud-table/crud-table.component';
     CategoryListComponent,
     ListElementComponent,
     CrudTableComponent,
+    TableRawComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

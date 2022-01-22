@@ -1,18 +1,18 @@
+<p>item-list workssss!</p>
 <h1 id="tableLabel">All items</h1>
-
 
 <p *ngIf="!categories"><em>
         <app-loading></app-loading>
     </em></p>
 
+<form action=""></form>
 <form (ngSubmit)="addItem($event)">
     <label for="itemName">Name :</label>
     <input name="itemName">
     <br>
     <input type="submit" value="Add item">
+
 </form>
-
-
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="categories">
     <thead>
         <tr>
@@ -33,3 +33,5 @@
         </tr>
     </tbody>
 </table>
+
+<app-item [testInput]="testValue" (testOutput)="onButtonClick($event)"></app-item>

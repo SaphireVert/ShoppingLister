@@ -1,25 +1,15 @@
 <p>item-list workssss!</p>
 <h1 id="tableLabel">All items</h1>
 
-<!-- <p>This component demonstrates fetching data from the server.</p> -->
-
 <p *ngIf="!categories"><em>
         <app-loading></app-loading>
     </em></p>
 
 <form action=""></form>
-<!-- <button class="btn btn-primary" (click)="add()" *ngIf="items">+</button> -->
-<!-- <input type="text" id="itemName">
-<input type="text" id="itemBrand">
-<form (submit)="onSubmit()">
-   <input [(ngModel)]="playerName">
-</form> -->
 <form (ngSubmit)="addItem($event)">
     <label for="itemName">Name :</label>
     <input name="itemName">
     <br>
-    <!-- <label for="itemName">Brand :</label>
-    <input name="itemBrand"> -->
     <input type="submit" value="Add item">
 
 </form>
@@ -35,11 +25,15 @@
     </thead>
     <tbody>
         <tr *ngFor="let category of categories">
-            <td>{{ category.id }}</td>
+            <!-- <tr my-tr></tr> -->    
+            <!-- <td>va</td>
+            <td></td> -->
+            <!-- <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
             <td></td>
             <td><button class="btn btn-primary" (click)="edit(category.id)">Edit</button></td>
-            <td><button class="btn btn-primary" (click)="delete(category.id)">Delete</button></td>
+            <td><button class="btn btn-primary" (click)="delete(category.id)">Delete</button></td> -->
+            <!-- <app-table-raw [elements]='category' (testOutput)="onButtonClick($event)"></app-table-raw> -->
         </tr>
     </tbody>
 </table>
