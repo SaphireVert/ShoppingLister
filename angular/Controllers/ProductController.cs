@@ -38,7 +38,7 @@ namespace angular.Controllers
         [HttpGet]
         [Route("getAll")]
 
-        public ActionResult<List<ProductDTO>> GetAll(int id){
+        public ActionResult<List<ProductDTO>> GetAll(){
             var tproducts = _context.T_Product.Where(c => c.isDeleted == false);
             List<ProductDTO> returnProduct = new List<ProductDTO>();
             foreach (var element in tproducts)

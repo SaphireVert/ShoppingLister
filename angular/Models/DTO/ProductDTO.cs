@@ -9,6 +9,7 @@ public class ProductDTO
         Id = product.id;
         Name = product.Name;
         Brand = product.Brand;
+        CategoryId = product.CategoryId;
     }
     public ProductDTO(string name, string brand){
         Name = name;

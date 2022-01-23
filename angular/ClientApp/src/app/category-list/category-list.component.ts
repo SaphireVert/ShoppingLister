@@ -19,16 +19,16 @@ export class CategoryListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.itemService.getItems().then((item) => (this.categories = item));
+    this.itemService.getCategories().then((item) => (this.categories = item));
   }
   public edit(id: number) {}
   public delete(id: number) {
-    this.itemService.deleteItem(id).then(() => this.ngOnInit());
+    this.itemService.deleteCategory(id).then(() => this.ngOnInit());
   }
   public addItem(event: any) {
     console.debug("adding...");
     this.itemService
-      .createItem({
+      .createCategory({
         name: event.target.itemName.value,
       })
       .then(() => this.ngOnInit());

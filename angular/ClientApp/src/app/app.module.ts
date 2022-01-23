@@ -16,6 +16,7 @@ import { ListElementComponent } from './list-element/list-element.component';
 import { CrudTableComponent } from './crud-table/crud-table.component';
 import { TableRawComponent } from './table-raw/table-raw.component';
 import { ListsListComponent } from './lists-list/lists-list.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ListsListComponent } from './lists-list/lists-list.component';
     CrudTableComponent,
     TableRawComponent,
     ListsListComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -41,6 +43,7 @@ import { ListsListComponent } from './lists-list/lists-list.component';
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "items-lists", component: ItemsListsComponent },
       { path: "category-list", component: CategoryListComponent },
+      { path: "product-list", component: ProductListComponent },
     ]),
   ],
   providers: [],

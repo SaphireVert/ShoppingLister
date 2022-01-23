@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { prototype } from 'events';
+import { HttpClient } from '@angular/common/http';
+import { NumberSymbol } from '@angular/common';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
-export class CategoryService {
+export class ProductService {
   public baseUrl: string;
   public http: HttpClient;
 
@@ -14,20 +14,10 @@ export class CategoryService {
     this.http = http;
   }
 
-  // getValueFromObservable(): Promise<Category[]> {
-  //   return new Promise((resolves) => {
-  //     this.http
-  //       .get<Category[]>(this.baseUrl + "category/getAll")
-  //       .subscribe((data: any) => {
-  //         console.log(data);
-  //         resolve(data);
-  //       });
-  //   });
-  // }
-  createCategory(category: any): Promise<boolean> {
+  createProduct(item: any): Promise<boolean> {
         return new Promise<boolean>((resolve) => {
           this.http
-            .post("https://localhost:5001/category", category, {
+            .post("https://localhost:5001/product", item, {
               responseType: "text",
             })
             .subscribe((data) => {
@@ -38,10 +28,10 @@ export class CategoryService {
 
 
   }
-  deleteCategory(id: number): Promise<boolean> {
+  deleteProduct(id: number): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       var json: object = this.http
-        .delete("https://localhost:5001/category?id=" + id, {
+        .delete("https://localhost:5001/product?id=" + id, {
           responseType: "text",
         })
         .subscribe((data) => {
@@ -52,10 +42,10 @@ export class CategoryService {
         });
     });
   }
-  getCategories(): Promise<Category[]> {
-    return new Promise<Category[]>((resolve) => {
-      this.http.get<Category[]>(this.baseUrl + "category/getAll").subscribe(
-        (result: Category[]) => {
+  getProducts(): Promise<Product[]> {
+    return new Promise<Product[]>((resolve) => {
+      this.http.get<Product[]>(this.baseUrl + "product/getAll").subscribe(
+        (result: Product[]) => {
           // toto = result;
           console.log(result);
           
@@ -69,7 +59,10 @@ export class CategoryService {
   }
 }
 
-interface Category {
+interface Product {
   id: number;
   name: string;
+  brand: string;
+  categoryId: number;
 }
+

@@ -29,5 +29,6 @@ public class T_Product
     public string Brand { get; set; }
     public bool isDeleted { get; set; }
 
+    public int CategoryId;
     public T_Category fk_Category { get; set; }
 }

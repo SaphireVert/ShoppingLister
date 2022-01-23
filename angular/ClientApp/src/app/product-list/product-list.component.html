@@ -1,0 +1,47 @@
+<h1 id="tableLabel">All Products</h1>
+
+<p *ngIf="!products"><em>
+        <app-loading></app-loading>
+    </em></p>
+
+<form action=""></form>
+<form (ngSubmit)="addProduct($event)">
+    <label for="productName">Name :</label>
+    <input name="productName">
+    <label for="brandName">Brand :</label>
+    <input name="brandName">
+    <br>
+    
+    <label for="categorySelectBox">Category :</label>
+    <select name="categorySelectBox">
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+    </select>
+
+    <input type="submit" value="Add Product">
+    
+</form>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.brand }}</td>
+            <td></td>
+            <td><button class="btn btn-primary" (click)="edit(product.id)">Edit</button></td>
+            <td><button class="btn btn-primary" (click)="delete(product.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+

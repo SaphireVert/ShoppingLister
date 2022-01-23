@@ -2,9 +2,6 @@ app-list-element:hover {
     cursor: pointer;
 }
 
-h1{
-    /* background-color: brown; */
-}
 #parentDiv {
     border-color: grey;
     border-width: 1px;
