@@ -73,5 +73,4 @@ interface Item {
   name: string;
   brand: string;
   quantity: number;
-  category: string;
 }

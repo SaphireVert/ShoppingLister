@@ -13,12 +13,15 @@
    <input [(ngModel)]="playerName">
 </form> -->
 <form (ngSubmit)="addItem($event)">
-  <label for="itemName">Name :</label>
-  <input name="itemName" >
+  <label for="itemName">Quantity :</label>
+  <input type="number" name="itemQuantity">
   <br>
-  <label for="itemName">Brand :</label>
-   <input name="itemBrand" >
-   <input type="submit" value="Add item">
+  <label for="productSelectBox">Product :</label>
+  <select name="productSelectBox">
+    <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+  </select>
+  <input type="submit" value="Add item">
+
 
 </form>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="items">
