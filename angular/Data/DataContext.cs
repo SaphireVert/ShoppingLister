@@ -25,13 +25,14 @@ namespace angular.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // base.OnModelCreating(modelBuilder);
-            // modelBuilder.SharedTypeEntity<Dictionary<string, object>>("Product", b =>
-            // {
-            //     b.IndexerProperty<int>("Id");
-            //     b.IndexerProperty<string>("Name").IsRequired();
-            //     b.IndexerProperty<decimal>("Price");
-            // });
+        // base.OnModelCreating(modelBuilder);
+        // modelBuilder.SharedTypeEntity<Dictionary<string, object>>("Product", b =>
+        // {
+        //     // b.IndexerProperty<int>("Id");
+        //     // b.IndexerProperty<string>("Name").IsRequired();
+        //     // b.IndexerProperty<decimal>("Price");
+        // });
 
-    }
+
+        }
     }   

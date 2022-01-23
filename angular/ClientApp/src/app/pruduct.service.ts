@@ -64,5 +64,6 @@ interface Product {
   name: string;
   brand: string;
   categoryId: number;
+  categoryName: string;
 }
 

@@ -14,6 +14,7 @@ public class T_Product
         id = productDTO.Id;
         Name = productDTO.Name;
         Brand = productDTO.Brand;
+        CategoryId = productDTO.CategoryId;
     }
     public T_Product(string name, string brand){
         Name = name;
@@ -29,6 +30,6 @@ public class T_Product
     public string Brand { get; set; }
     public bool isDeleted { get; set; }
 
-    public int CategoryId;
+    public int CategoryId { get; set; }
     public T_Category fk_Category { get; set; }
 }

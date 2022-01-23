@@ -55,6 +55,7 @@ interface Products {
   name: string;
   brand: string;
   categoryId: number;
+  categoryName: string;
 }
 
 interface Category {
