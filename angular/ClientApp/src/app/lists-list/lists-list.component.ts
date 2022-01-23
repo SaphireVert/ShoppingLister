@@ -32,7 +32,7 @@ export class ListsListComponent implements OnInit {
 
   goToList(id: number){
     console.log("Going to " + id);
-    this.router.navigate(['/category-list'])
+    this.router.navigate(['/items-lists', {listId: id}])
   }
 
   addList(event: any) {

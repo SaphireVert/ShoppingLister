@@ -53,9 +53,9 @@ export class ItemsService {
         });
     });
   }
-  getItems(): Promise<Item[]> {
+  getItems(id:number): Promise<Item[]> {
     return new Promise<Item[]>((resolve) => {
-      this.http.get<Item[]>(this.baseUrl + "item/getAll").subscribe(
+      this.http.get<Item[]>(this.baseUrl + "item/fromList?id=" + id).subscribe(
         (result: Item[]) => {
           // toto = result;
           resolve(result);
@@ -72,4 +72,6 @@ interface Item {
   id: number;
   name: string;
   brand: string;
+  quantity: number;
+  category: string;
 }

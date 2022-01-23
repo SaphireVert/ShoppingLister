@@ -26,7 +26,7 @@ export class ListElementComponent implements OnInit {
     this.deleteEventOutput.emit(this.infosInput.id);
   }
 
-  goTo(id:number) {
+  goTo() {
     this.goToEventOutput.emit(this.infosInput.id);
   }
 

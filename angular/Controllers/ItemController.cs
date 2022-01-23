@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+// using System.Data.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,6 +24,9 @@ namespace angular.Controllers
 
         [HttpGet]
         public ActionResult<ItemDTO> Get(int id){
+            var item = _context.T_Item.FirstOrDefault(c => c.id == id);
+            var product = _context.T_Product.Find(item.ProductId);
+            var category = _context.T_Category.Find(product.CategoryId);
             try
             {
                 return new ItemDTO(_context.T_Item.FirstOrDefault(c => c.id == id));
@@ -51,14 +55,33 @@ namespace angular.Controllers
 
         [HttpGet]
         [Route("fromList")]
-        public ActionResult<List<ItemDTO>> GetAllT_ItemsInList(int id){
-            var titems = _context.T_Item.Where(c => c.ListId == id);
-            List<ItemDTO> returnItem = new List<ItemDTO>();
-            foreach (var element in titems)
+        public ActionResult<List<ItemViewDTO>> GetAllT_ItemsInList(int id){
+            // var query = from ti in _context.Set<T_Item>()
+            //             join tp in _context.Set<T_Product>()
+            //                 on ti.ProductId equals tp.id
+            //             select new { ti.id, tp.Name };
+
+            // var totoItem = _context.T_Item.GroupJoin(
+
+            // )
+            try
             {
-                returnItem.Add(new ItemDTO(element));
+                var titems = _context.T_Item.Where(c => c.ListId == id);
+                List<ItemViewDTO> returnItem = new List<ItemViewDTO>();
+                foreach (var element in titems)
+                {
+                    var product = _context.T_Product.Find(element.ProductId);
+                    var category = _context.T_Category.Find(product.CategoryId);
+                    var tmpItemViewDto = new ItemViewDTO(element.id, element.Quantity, product.Name, product.Brand, category.Name);
+                    returnItem.Add(tmpItemViewDto);
+                }
+                return returnItem;
             }
-            return returnItem;
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
+
         }
 
 
