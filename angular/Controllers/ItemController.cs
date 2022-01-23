@@ -49,16 +49,24 @@ namespace angular.Controllers
         }
 
 
-        // [HttpGet]
-        // [Route("getAllItemsInList")]
-        // public List<T_Item> GetAllT_ItemsInList(int listId){
-        //     // _context.T_ItemT_ItemList.Add(new Dictionary<string, object> { ["T_ItemListsid"] = 1, ["itemsid"] = 2 });
-
-        //     return _context.T_Item.FromSqlRaw("SELECT i.id, i.Name, i.Quantity FROM T_Item i JOIN T_ItemT_ItemList iil ON i.id = iil.T_Itemsid JOIN T_ItemList il ON iil.T_ItemListsid = il.id WHERE il.id = " + listId).ToList();
-        //     // .FromSqlRaw("SELECT * FROM dbo.Blogs")
-        //     // .ToList();
-
-        // }
+        [HttpGet]
+        [Route("fromList")]
+        public ActionResult<List<ItemDTO>> GetAllT_ItemsInList(int id){
+            try
+            {
+                var titems = _context.T_Item.Where(c => c.ListId == id);
+                List<ItemDTO> returnItem = new List<ItemDTO>();
+                foreach (var element in titems)
+                {
+                    returnItem.Add(new ItemDTO(element));
+                }
+                return returnItem;
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(404);
+            }
+        }
 
 
         [HttpPost]
@@ -67,7 +75,7 @@ namespace angular.Controllers
             {
                 T_Item item = new T_Item(itemDto);
                 item.fk_List = _context.T_List.Find(itemDto.ListId);
-                item.fk_Product = _context.T_Product.Find(itemDto.ListId);
+                item.fk_Product = _context.T_Product.Find(itemDto.ProductId);
                 _context.Add(item);
                 _context.SaveChanges();
                 return StatusCode(200);

@@ -9,6 +9,8 @@ public class ItemDTO
     {
         Id = item.id;
         Quantity = item.Quantity;
+        ListId = item.ListId;
+        ProductId = item.ProductId;
     }
     public ItemDTO(int quantity)
     {
