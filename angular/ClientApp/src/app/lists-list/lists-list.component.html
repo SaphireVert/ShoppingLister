@@ -9,7 +9,6 @@
 </form>
 <div id="parentDiv">
     <div *ngFor="let list of lists" >
-        <!-- <p>{{ list }}</p> -->
         <app-list-element [infosInput]="list" (deleteEventOutput)="deleteElement($event)" (goToEventOutput)="goToList($event)"></app-list-element>
     </div>
 </div>

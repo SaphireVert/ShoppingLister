@@ -8,13 +8,9 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ItemsListsComponent } from './items-lists/items-lists.component';
-import { ItemComponent } from './item/item.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { ListElementComponent } from './list-element/list-element.component';
-import { CrudTableComponent } from './crud-table/crud-table.component';
-import { TableRawComponent } from './table-raw/table-raw.component';
 import { ListsListComponent } from './lists-list/lists-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
@@ -24,14 +20,9 @@ import { ProductListComponent } from './product-list/product-list.component';
     NavMenuComponent,
     HomeComponent,
     ItemsListsComponent,
-    ItemComponent,
-    SideMenuComponent,
-    SideMenuComponent,
     LoadingComponent,
     CategoryListComponent,
     ListElementComponent,
-    CrudTableComponent,
-    TableRawComponent,
     ListsListComponent,
     ProductListComponent,
   ],

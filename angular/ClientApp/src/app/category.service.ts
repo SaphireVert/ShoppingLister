@@ -14,16 +14,6 @@ export class CategoryService {
     this.http = http;
   }
 
-  // getValueFromObservable(): Promise<Category[]> {
-  //   return new Promise((resolves) => {
-  //     this.http
-  //       .get<Category[]>(this.baseUrl + "category/getAll")
-  //       .subscribe((data: any) => {
-  //         console.log(data);
-  //         resolve(data);
-  //       });
-  //   });
-  // }
   createCategory(category: any): Promise<boolean> {
         return new Promise<boolean>((resolve) => {
           this.http
@@ -31,7 +21,6 @@ export class CategoryService {
               responseType: "text",
             })
             .subscribe((data) => {
-              console.log(data);
               resolve(true);
             });
         });
@@ -45,10 +34,7 @@ export class CategoryService {
           responseType: "text",
         })
         .subscribe((data) => {
-          console.log(data);
-          console.log("data");
           resolve(true);
-          // test.ngOnInit()
         });
     });
   }
@@ -56,9 +42,6 @@ export class CategoryService {
     return new Promise<Category[]>((resolve) => {
       this.http.get<Category[]>(this.baseUrl + "category/getAll").subscribe(
         (result: Category[]) => {
-          // toto = result;
-          console.log(result);
-          
           resolve(result);
         },
         (error) => {

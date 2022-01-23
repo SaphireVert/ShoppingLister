@@ -10,7 +10,6 @@ export class CategoryListComponent implements OnInit {
 
   public categories: Category[];
   public baseURL: string;
-  // public http: HttpClient;
   public itemService: CategoryService;
   public testValue: string = "Input click!";
 
@@ -26,17 +25,11 @@ export class CategoryListComponent implements OnInit {
     this.itemService.deleteCategory(id).then(() => this.ngOnInit());
   }
   public addItem(event: any) {
-    console.debug("adding...");
     this.itemService
       .createCategory({
         name: event.target.itemName.value,
       })
       .then(() => this.ngOnInit());
-    
-    
-  }
-  onButtonClick(output:string){
-    console.log(output)
   }
 
   

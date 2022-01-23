@@ -15,16 +15,6 @@ export class ListService {
     this.http = http;
   }
 
-  // getValueFromObservable(): Promise<Item[]> {
-  //   return new Promise((resolves) => {
-  //     this.http
-  //       .get<Item[]>(this.baseUrl + "item/getAll")
-  //       .subscribe((data: any) => {
-  //         console.log(data);
-  //         resolve(data);
-  //       });
-  //   });
-  // }
   createList(list: any): Promise<boolean> {
         return new Promise<boolean>((resolve) => {
           this.http
@@ -32,7 +22,6 @@ export class ListService {
               responseType: "text",
             })
             .subscribe((data) => {
-              console.log(data);
               resolve(true);
             });
         });
@@ -46,10 +35,7 @@ export class ListService {
           responseType: "text",
         })
         .subscribe((data) => {
-          console.log(data);
-          console.log("data");
           resolve(true);
-          // test.ngOnInit()
         });
     });
   }
@@ -57,7 +43,6 @@ export class ListService {
     return new Promise<List[]>((resolve) => {
       this.http.get<List[]>(this.baseUrl + "list/getAll").subscribe(
         (result: List[]) => {
-          // toto = result;
           resolve(result);
         },
         (error) => {

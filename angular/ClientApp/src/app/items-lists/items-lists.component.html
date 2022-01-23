@@ -1,17 +1,7 @@
-<!-- <p>item-list workssss!</p> -->
 <h1 id="tableLabel">All items</h1>
-
-<!-- <p>This component demonstrates fetching data from the server.</p> -->
 
 <p *ngIf="!items"><em><app-loading></app-loading></em></p>
 
-<form action=""></form> 
-<!-- <button class="btn btn-primary" (click)="add()" *ngIf="items">+</button> -->
-<!-- <input type="text" id="itemName">
-<input type="text" id="itemBrand">
-<form (submit)="onSubmit()">
-   <input [(ngModel)]="playerName">
-</form> -->
 <form (ngSubmit)="addItem($event)">
   <label for="itemName">Quantity :</label>
   <input type="number" name="itemQuantity">
@@ -49,5 +39,3 @@
     </tr>
   </tbody>
 </table>
-
-<!-- <app-item [testInput]="testValue" (testOutput)="onButtonClick($event)"></app-item>  -->

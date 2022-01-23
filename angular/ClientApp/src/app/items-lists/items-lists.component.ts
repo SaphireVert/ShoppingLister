@@ -31,12 +31,10 @@ export class ItemsListsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log("ID:",this.listId);
     this.listId = parseInt(this.route.snapshot.paramMap.get('listId'));
     this.itemService.getItems(this.listId).then((item) => (this.items = item));
     this.productService.getProducts().then(p => {
       this.products = p
-      console.log(p);
       
     });
   }
@@ -57,7 +55,6 @@ export class ItemsListsComponent implements OnInit {
     
   }
   onButtonClick(output:string){
-    console.log(output)
   }
 
   

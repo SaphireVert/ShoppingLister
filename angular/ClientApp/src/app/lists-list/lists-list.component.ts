@@ -24,14 +24,12 @@ export class ListsListComponent implements OnInit {
   }
 
   deleteElement(id: number){
-    console.log("Deleting..." + id);
     if(confirm("Are you sure you want to delete this list ?")){
       this.listService.deleteList(id).then(i => this.ngOnInit());
     }
   }
 
   goToList(id: number){
-    console.log("Going to " + id);
     this.router.navigate(['/items-lists', {listId: id}])
   }
 
@@ -42,15 +40,7 @@ export class ListsListComponent implements OnInit {
         name: event.target.listName.value,
       })
       .then(() => this.ngOnInit());
-    
-    
   }
-
-  // testClick(){
-  //   console.log("clicked");
-    
-  // }
-
 }
 
 interface List {

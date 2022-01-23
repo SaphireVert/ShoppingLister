@@ -10,16 +10,11 @@ export class ListElementComponent implements OnInit {
   @Output("deleteEventOutput") deleteEventOutput = new EventEmitter();
   @Output("goToEventOutput") goToEventOutput = new EventEmitter();
 
-  // test = "test"
-  // elementInfos = ["toto", "tutu", "titi"]
-  
   constructor() { 
     
   }
 
   ngOnInit() {
-    console.log("this.infosInput");
-    console.log(this.infosInput);
   }
 
   delete() {

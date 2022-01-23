@@ -24,17 +24,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let category of categories">
-            <!-- <tr my-tr></tr> -->    
-            <!-- <td>va</td>
-            <td></td> -->
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
             <td></td>
             <td><button class="btn btn-primary" (click)="edit(category.id)">Edit</button></td>
             <td><button class="btn btn-primary" (click)="delete(category.id)">Delete</button></td>
-            <!-- <app-table-raw [elements]='category' (testOutput)="onButtonClick($event)"></app-table-raw> -->
         </tr>
     </tbody>
 </table>
 
-<app-item [testInput]="testValue" (testOutput)="onButtonClick($event)"></app-item>

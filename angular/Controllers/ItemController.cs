@@ -35,7 +35,6 @@ namespace angular.Controllers
             {
                 return StatusCode(404);
             }
-            // return new ItemDTO();
         }
 
 
@@ -56,14 +55,6 @@ namespace angular.Controllers
         [HttpGet]
         [Route("fromList")]
         public ActionResult<List<ItemViewDTO>> GetAllT_ItemsInList(int id){
-            // var query = from ti in _context.Set<T_Item>()
-            //             join tp in _context.Set<T_Product>()
-            //                 on ti.ProductId equals tp.id
-            //             select new { ti.id, tp.Name };
-
-            // var totoItem = _context.T_Item.GroupJoin(
-
-            // )
             try
             {
                 var titems = _context.T_Item.Where(c => c.ListId == id);

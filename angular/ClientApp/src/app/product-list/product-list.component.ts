@@ -32,8 +32,6 @@ export class ProductListComponent implements OnInit {
   public addProduct(event: any) {
     console.debug("adding...");
     console.debug(event.target.categorySelectBox.value);
-    // console.debug(event.target.categorySelectBox.categoryId);
-    // console.debug(event.target.categorySelectBox.selectedIndex);
     this.productService
       .createProduct({
         name: event.target.productName.value,
@@ -43,7 +41,6 @@ export class ProductListComponent implements OnInit {
       .then(() => this.ngOnInit());
   }
   onButtonClick(output:string){
-    console.log(output)
   }
 
 
