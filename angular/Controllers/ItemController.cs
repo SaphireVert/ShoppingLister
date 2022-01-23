@@ -52,20 +52,13 @@ namespace angular.Controllers
         [HttpGet]
         [Route("fromList")]
         public ActionResult<List<ItemDTO>> GetAllT_ItemsInList(int id){
-            try
+            var titems = _context.T_Item.Where(c => c.ListId == id);
+            List<ItemDTO> returnItem = new List<ItemDTO>();
+            foreach (var element in titems)
             {
-                var titems = _context.T_Item.Where(c => c.ListId == id);
-                List<ItemDTO> returnItem = new List<ItemDTO>();
-                foreach (var element in titems)
-                {
-                    returnItem.Add(new ItemDTO(element));
-                }
-                return returnItem;
+                returnItem.Add(new ItemDTO(element));
             }
-            catch (System.Exception)
-            {
-                return StatusCode(404);
-            }
+            return returnItem;
         }
 
 
